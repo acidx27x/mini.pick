@@ -1360,7 +1360,7 @@ end
 --- Perform pattern matching treating prompt as pattern. Gives live feedback on
 --- which matches are found. Use |MiniPick-actions-refine| to revert to regular
 --- matching. Use `<C-o>` to restrict search to files matching glob patterns,
---- `<C-d>` to remove glob patterns, `<C-i>` to modify glob patterns.
+--- `<C-d>` to remove glob patterns, `<C-y>` to modify glob patterns.
 --- Tries to use one of the CLI tools to create items (see |MiniPick-cli-tools|):
 --- `rg`, `git`. If none is present, error is thrown (for performance reasons).
 ---
@@ -1375,7 +1375,7 @@ end
 ---   - __pick_builtin_grep_globs
 ---     Use `<C-o>` custom mapping to add glob to the array.
 ---     Use `<C-d>` custom mapping to remove glob from the array.
----     Use `<C-i>` custom mapping to modify glob inside the array.
+---     Use `<C-y>` custom mapping to modify glob inside the array.
 ---@param opts __pick_builtin_opts
 MiniPick.builtin.grep_live = function(local_opts, opts)
   local_opts = vim.tbl_extend('force', { tool = nil, globs = {} }, local_opts or {})
@@ -1464,7 +1464,7 @@ MiniPick.builtin.grep_live = function(local_opts, opts)
   local mappings = {
     add_glob    = { char = '<C-o>', func = add_glob },
     remove_glob = { char = '<C-d>', func = remove_glob },
-    modify_glob = { char = '<C-i>', func = modify_glob },
+    modify_glob = { char = '<C-y>', func = modify_glob },
   }
 
   opts = vim.tbl_deep_extend('force', opts or {}, { source = { items = {}, match = match }, mappings = mappings })
